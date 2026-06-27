@@ -2,16 +2,12 @@
 
 ## Development Environment
 
-This project uses [Flox](https://flox.dev) for dependency management. Flox provides Go, PlatformIO, and GNU Make in an isolated environment.
+Install the dependencies:
 
-```bash
-# Install Flox (https://flox.dev/docs/install)
-# macOS:
-brew install flox
-
-# Activate the environment (installs Go, PlatformIO, espflash, GNU Make)
-flox activate
-```
+- [Go 1.21+](https://go.dev/dl/)
+- [PlatformIO Core](https://docs.platformio.org/en/latest/core/installation.html) (ESP32 build)
+- [espflash](https://github.com/esp-rs/espflash) (ESP32 flasher)
+- GNU Make
 
 Verify tools are available:
 
@@ -22,21 +18,12 @@ espflash --version # ESP32 flasher
 make --version     # GNU Make
 ```
 
-### Building Without Flox
-
-If you prefer not to use Flox, install the dependencies manually:
-
-- [Go 1.21+](https://go.dev/dl/)
-- [PlatformIO Core](https://docs.platformio.org/en/latest/core/installation.html)
-- GNU Make
-
-Then use the same `make build`, `pio run`, etc. commands.
+Then use the `make build`, `pio run`, etc. commands.
 
 ## Project Structure
 
 ```
 therm-pro/
-  .flox/                         Flox environment (Go, PlatformIO, Make)
   contrib/                       systemd unit file, packaging helpers
   cmd/therm-pro-server/          Go server entry point
   internal/
@@ -104,9 +91,9 @@ make esp32-flash     # Build + flash via USB
 make esp32-monitor   # Monitor serial output
 ```
 
-Flashing uses [espflash](https://github.com/esp-rs/espflash) (a Rust-based flasher provided by Flox) instead of PlatformIO's esptool, which avoids pyserial compatibility issues under nix.
+Flashing uses [espflash](https://github.com/esp-rs/espflash) (a Rust-based flasher) instead of PlatformIO's esptool, which avoids pyserial compatibility issues.
 
-### PlatformIO build fails under Flox
+### PlatformIO build fails
 
 If the ESP32 toolchain fails to install, try `pio pkg install` separately first.
 

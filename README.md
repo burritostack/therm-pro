@@ -37,7 +37,7 @@ The [ThermoPro TP25](https://buythermopro.com/products/tp25-wireless-leave-in-me
 
 ### 1. Build the Server
 
-You'll need [Go 1.21+](https://go.dev/dl/) and GNU Make. If you use [Flox](https://flox.dev), `flox activate` provides all dependencies automatically.
+You'll need [Go 1.21+](https://go.dev/dl/) and GNU Make.
 
 ```bash
 git clone https://github.com/stahnma/therm-pro.git
@@ -97,7 +97,7 @@ The server automatically registers itself with the local Consul agent (`localhos
 
 ### 3. Flash the ESP32
 
-Set your WiFi credentials and build/flash the firmware. You'll need [PlatformIO](https://docs.platformio.org/en/latest/core/installation.html) (or use `flox activate` which provides it).
+Set your WiFi credentials and build/flash the firmware. You'll need [PlatformIO](https://docs.platformio.org/en/latest/core/installation.html).
 
 ```bash
 export ESP32_WIFI_SSID="your-wifi-name"
@@ -390,7 +390,7 @@ Debug mode is especially useful for diagnosing WebAuthn passkey failures through
 - Check serial monitor for connection errors
 
 #### ESP32 flashing fails
-- Make sure you're using `make esp32-flash` (uses espflash) rather than `pio run -t upload` (uses pyserial, which has issues under nix)
+- Make sure you're using `make esp32-flash` (uses espflash) rather than `pio run -t upload` (uses pyserial, which can have compatibility issues)
 - If espflash can't find the port, try `espflash flash --port /dev/cu.usbserial-XXXXX esp32/.pio/build/esp32/firmware.elf`
 - Run `espflash list-ports` to see available serial ports
 
